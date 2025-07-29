@@ -1,0 +1,12 @@
+{
+  "name": "@journeyapps-labs/common-docs",
+  "type": "module",
+  "dependencies": {
+    "typedoc": "^0.28.8",
+    "@docusaurus/plugin-content-docs": "^3.8.1",
+    "@docusaurus/types": "^3.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0"
+  }
+}
