@@ -36,7 +36,7 @@ export const generateTSDocPlugin = (options: Package) => {
   ];
 };
 
-export const generateTSDocSidebarEntry = (options: Package) => {
+export const generateTSDocSidebarEntry = (options: Package, docs_dir: string) => {
   return {
     type: 'category',
     label: options.name,
@@ -44,6 +44,6 @@ export const generateTSDocSidebarEntry = (options: Package) => {
       type: 'doc',
       id: `generated/${options.id}/index`
     },
-    items: require(`../docs/generated/${options.id}/typedoc-sidebar.cjs`)
+    items: require(path.join(docs_dir, 'generated/${options.id}/typedoc-sidebar.cjs'))
   } as unknown as SidebarsConfig;
 };
