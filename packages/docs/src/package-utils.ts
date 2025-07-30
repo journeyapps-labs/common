@@ -44,6 +44,6 @@ export const generateTSDocSidebarEntry = (options: Package, docs_dir: string) =>
       type: 'doc',
       id: `generated/${options.id}/index`
     },
-    items: require(path.join(docs_dir, 'generated/${options.id}/typedoc-sidebar.cjs'))
+    items: require(path.join(docs_dir, `generated/${options.id}/typedoc-sidebar.cjs`))
   } as unknown as SidebarsConfig;
 };
