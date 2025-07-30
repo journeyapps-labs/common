@@ -2,6 +2,18 @@
   "name": "@journeyapps-labs/common-docs",
   "type": "module",
   "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/journeyapps-labs/common.git"
+  },
+  "author": "JOURNEYAPPS",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "typings": "./dist/@types/index",
   "dependencies": {
     "typedoc": "^0.28.8",
     "prism-react-renderer": "^2.4.1",
