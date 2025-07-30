@@ -1,8 +1,0 @@
-{
-  "mode": "pre",
-  "tag": "next",
-  "initialVersions": {
-    "@journeyapps-labs/common-docs": "0.0.1"
-  },
-  "changesets": []
-}
