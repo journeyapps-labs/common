@@ -6,7 +6,8 @@
     "preinstall": "npx only-allow pnpm",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\"",
     "release": "pnpm build && pnpm changeset publish",
-    "build": "./node_modules/.bin/tsc --build"
+    "build": "./node_modules/.bin/tsc --build",
+    "test": "pnpm run -r test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
