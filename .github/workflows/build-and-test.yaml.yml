@@ -41,5 +41,5 @@ jobs:
       - name: Build libs and modules
         run: pnpm build
 
-#      - name: Test
-#        run: pnpm test
+      - name: Test
+        run: pnpm test
