@@ -1,5 +1,5 @@
-import { LoggerTransport } from './LoggerTransport';
-import { LogLevel } from './Logger';
+import { LoggerTransport } from '../LoggerTransport';
+import { LogLevel } from '../Logger';
 
 export class ConsoleLoggerTransport extends LoggerTransport {
   log(level: LogLevel, name: string, d: any[]) {

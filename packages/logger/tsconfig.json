@@ -5,7 +5,7 @@
     "rootDir": "src",
     "outDir": "dist",
     "lib": [
-      "DOM"
+      "DOM","ESNext"
     ]
   },
   "include": [
