@@ -1,5 +1,5 @@
 {
-  "name": "@journeyapps-labs/common-ioc",
+  "name": "@journeyapps-labs/lib-common-ioc",
   "version": "1.0.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

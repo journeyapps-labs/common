@@ -1,4 +1,4 @@
-# @journeyapps-labs/common-docs
+# @journeyapps-labs/lib-common-docs
 
 ## 0.0.2
 

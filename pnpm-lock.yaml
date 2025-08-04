@@ -61,7 +61,7 @@ importers:
 
   packages/tree:
     dependencies:
-      '@journeyapps-labs/common-utils':
+      '@journeyapps-labs/lib-common-utils':
         specifier: workspace:^
         version: link:../utils
     devDependencies:

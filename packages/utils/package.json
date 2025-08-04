@@ -1,5 +1,5 @@
 {
-  "name": "@journeyapps-labs/common-utils",
+  "name": "@journeyapps-labs/lib-common-utils",
   "version": "1.0.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

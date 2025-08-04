@@ -1,5 +1,5 @@
 {
-  "name": "@journeyapps-labs/common-tree",
+  "name": "@journeyapps-labs/lib-common-tree",
   "version": "1.0.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -17,7 +17,7 @@
     "test": "vitest --config vitest.config.ts --run"
   },
   "dependencies": {
-    "@journeyapps-labs/common-utils": "workspace:^"
+    "@journeyapps-labs/lib-common-utils": "workspace:^"
   },
   "devDependencies": {
     "vitest": "^0.33.0"
