@@ -1,0 +1,22 @@
+{
+  "name": "@journeyapps-labs/common-logger",
+  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/journeyapps-labs/common.git"
+  },
+  "author": "JOURNEYAPPS",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "typings": "./dist/@types/index",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.20"
+  }
+}
