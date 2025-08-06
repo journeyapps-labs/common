@@ -20,6 +20,6 @@
     "@journeyapps-labs/common-utils": "workspace:^"
   },
   "devDependencies": {
-    "vitest": "^0.33.0"
+    "vitest": "^3.2.4"
   }
 }
