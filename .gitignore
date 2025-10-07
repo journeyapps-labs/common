@@ -13,3 +13,4 @@ dist
 *.tsbuildinfo
 
 .pnpm-debug.log
+.hidden

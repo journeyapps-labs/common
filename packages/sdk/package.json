@@ -1,0 +1,47 @@
+{
+  "name": "@journeyapps-labs/common-sdk",
+  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/journeyapps-labs/common.git"
+  },
+  "author": "JOURNEYAPPS",
+  "license": "Apache-2.0",
+  "main": "./dist/index",
+  "browser": "./dist/web",
+  "types": "./dist/index",
+  "exports": {
+    ".": {
+      "browser": {
+        "types": "./dist/web.d.ts",
+        "default": "./dist/web.js"
+      },
+      "default": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "scripts": {
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "@types/node": "^24.7.0",
+    "@journeyapps-labs/micro-errors": "0.0.0-dev-20251007234455",
+    "@journeyapps-labs/micro-streaming": "0.0.0-dev-20251007234455",
+    "agentkeepalive": "^4.6.0",
+    "bson": "^6.10.4",
+    "lodash": "^4.17.21",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4",
+    "@types/lodash": "^4.17.20",
+    "@types/uuid": "^11.0.0",
+    "nock": "^14.0.10"
+  }
+}
