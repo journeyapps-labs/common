@@ -3,7 +3,7 @@ import * as micro_errors from '@journeyapps-labs/micro-errors';
 import * as stream from 'stream';
 import * as sdk from '../src';
 import nock from 'nock';
-import {describe,test,expect} from "vitest";
+import { describe, test, expect } from 'vitest';
 
 describe('network requests', () => {
   const client = sdk.createNodeNetworkClient();
