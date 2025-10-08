@@ -2,6 +2,7 @@ import * as micro_streaming from '@journeyapps-labs/micro-streaming';
 import * as micro_errors from '@journeyapps-labs/micro-errors';
 import * as stream from 'stream';
 import * as sdk from '../src';
+// @ts-ignore
 import nock from 'nock';
 import { describe, test, expect } from 'vitest';
 

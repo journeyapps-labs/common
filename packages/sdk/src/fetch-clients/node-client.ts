@@ -6,8 +6,11 @@ import * as defs from '../definitions';
 import * as errors from './errors';
 import * as utils from '../utils';
 import * as stream from 'stream';
-import * as https from 'https';
-import * as http from 'http';
+
+// these imports are written this way so they work with nock
+import https from 'node:https';
+import http from 'node:http';
+
 import { URL } from 'url';
 
 export type NodeResponse = Omit<defs.TResponse, 'body'> & {

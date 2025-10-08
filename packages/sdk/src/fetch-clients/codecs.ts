@@ -5,7 +5,7 @@ export const JSONCodec: defs.Codec = {
   encode: (data) => JSON.stringify(data),
   decode: (data) => {
     let raw;
-    if (ArrayBuffer.isView(data)) {
+    if (data instanceof ArrayBuffer) {
       const decoder = new TextDecoder('utf-8');
       raw = decoder.decode(data);
     } else {
