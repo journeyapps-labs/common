@@ -1,5 +1,11 @@
 # @journeyapps-labs/common-sdk
 
+## 1.0.2
+
+### Patch Changes
+
+- 44f7805: Bump deps
+
 ## 1.0.1
 
 ### Patch Changes
