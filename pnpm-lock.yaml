@@ -62,11 +62,11 @@ importers:
   packages/sdk:
     dependencies:
       '@journeyapps-labs/micro-errors':
-        specifier: 0.0.0-dev-20251007234455
-        version: 0.0.0-dev-20251007234455
+        specifier: 1.0.1
+        version: 1.0.1
       '@journeyapps-labs/micro-streaming':
-        specifier: 0.0.0-dev-20251007234455
-        version: 0.0.0-dev-20251007234455(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)
+        specifier: 1.0.1
+        version: 1.0.1(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)
       '@types/node':
         specifier: ^24.7.0
         version: 24.7.0
@@ -1467,17 +1467,17 @@ packages:
     resolution: {integrity: sha512-u3UPsIilWKOM3F9CXtrG8LEJmNxwoCQC/XVj4IKYXvvpx7QIi/Kg1LI5uDmDpKlac62NUtX7eLjRh+jVZcLOzw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  '@journeyapps-labs/micro-codecs@0.0.0-dev-20251007234455':
-    resolution: {integrity: sha512-/exzN96KIVcXL1Hl1CJDNRZppvNhkh2oojwNkJbcac4giR1UE1PBua9jWLxHPRrgiVCTA0A+/3wWm56PfmQNJA==}
+  '@journeyapps-labs/micro-codecs@1.0.1':
+    resolution: {integrity: sha512-Iy2sElOvk6C9NpzLHi0M2CYmVHVSRYK0y+BP/wRzaJ45z/3OUuXdwp9TqCEfVlqDIdDafoia7ES6X7oBWEBODw==}
 
-  '@journeyapps-labs/micro-errors@0.0.0-dev-20251007234455':
-    resolution: {integrity: sha512-lMJgwXQk9+B2hI5iGmAbUTW090ndDFNGCOKHXV0g88yzRrYb0h8GMYL/LXvWfRAHKwTrUAV4Q0W2r8bjQ2JO+A==}
+  '@journeyapps-labs/micro-errors@1.0.1':
+    resolution: {integrity: sha512-L7a6AC0mX+AWw1q7RfFYNRrfxWrMlXMnNnFPysHBuZFrtLh4bT/4cnGwXANlm5OBNQC2urhTmtpdOXZVlxC7yw==}
 
-  '@journeyapps-labs/micro-schema@0.0.0-dev-20251007234455':
-    resolution: {integrity: sha512-CitVpo77TVnuREt4lO9SCehF6B07m8600K/+GHlsYyXRfyv2tIzRuOto3E8jxMFsKLY0PuwG/dJfrsuT0ysEyg==}
+  '@journeyapps-labs/micro-schema@1.0.1':
+    resolution: {integrity: sha512-laimOhtrByxRb52yi880nVkPAHfqPZ4AzefmG161fto7IPoyhnSEwdWkou4byWS8II1d4R62Jhz01+wBTMHzdQ==}
 
-  '@journeyapps-labs/micro-streaming@0.0.0-dev-20251007234455':
-    resolution: {integrity: sha512-l+LUxj9iwOjfRRmdzqGUxHj1tMNPt8koOeq0jjkoyBvLE+VxsyAXzFi1Gp6gpV7aV0QGPP71hmKq1F9GF3SVfw==}
+  '@journeyapps-labs/micro-streaming@1.0.1':
+    resolution: {integrity: sha512-woWFNtPwKZwTz5NQ4RUecGOPXXO/W/KLkx8YOx9mvZ7XY3Lx1bDRpI1i6ZSBPeix+IBbl+bs394R0qlFliI1cg==}
 
   '@jridgewell/gen-mapping@0.3.12':
     resolution: {integrity: sha512-OuLGC46TjB5BbN1dH8JULVVZY4WTdkF7tV9Ys6wLL1rubZnCMstOhNHueU5bLCrnRuDhKPDM4g6sw4Bel5Gzqg==}
@@ -7952,7 +7952,7 @@ snapshots:
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
-  '@journeyapps-labs/micro-codecs@0.0.0-dev-20251007234455(@types/debug@4.1.12)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)':
+  '@journeyapps-labs/micro-codecs@1.0.1(@types/debug@4.1.12)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)':
     dependencies:
       '@types/node': 24.7.0
       bson: 6.10.4
@@ -7978,13 +7978,13 @@ snapshots:
       - tsx
       - yaml
 
-  '@journeyapps-labs/micro-errors@0.0.0-dev-20251007234455': {}
+  '@journeyapps-labs/micro-errors@1.0.1': {}
 
-  '@journeyapps-labs/micro-schema@0.0.0-dev-20251007234455(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)':
+  '@journeyapps-labs/micro-schema@1.0.1(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)':
     dependencies:
       '@apidevtools/json-schema-ref-parser': 14.2.1(@types/json-schema@7.0.15)
-      '@journeyapps-labs/micro-codecs': 0.0.0-dev-20251007234455(@types/debug@4.1.12)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)
-      '@journeyapps-labs/micro-errors': 0.0.0-dev-20251007234455
+      '@journeyapps-labs/micro-codecs': 1.0.1(@types/debug@4.1.12)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)
+      '@journeyapps-labs/micro-errors': 1.0.1
       ajv: 8.17.1
       better-ajv-errors: 2.0.2(ajv@8.17.1)
       ts-codec: 1.3.0
@@ -8012,10 +8012,10 @@ snapshots:
       - tsx
       - yaml
 
-  '@journeyapps-labs/micro-streaming@0.0.0-dev-20251007234455(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)':
+  '@journeyapps-labs/micro-streaming@1.0.1(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)':
     dependencies:
-      '@journeyapps-labs/micro-errors': 0.0.0-dev-20251007234455
-      '@journeyapps-labs/micro-schema': 0.0.0-dev-20251007234455(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)
+      '@journeyapps-labs/micro-errors': 1.0.1
+      '@journeyapps-labs/micro-schema': 1.0.1(@types/debug@4.1.12)(@types/json-schema@7.0.15)(@types/node@24.7.0)(jiti@1.21.7)(terser@5.43.1)(yaml@2.8.1)
       '@types/express': 5.0.3
       bson: 6.10.4
     transitivePeerDependencies:
