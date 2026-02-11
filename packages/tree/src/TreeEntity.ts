@@ -61,9 +61,9 @@ export class TreeEntity<T extends TreeEntityListener = TreeEntityListener>
     return this._cache;
   }
 
-  open() {
-    if (this.parent) {
-      this.parent.open();
+  open(options: { reveal?: boolean } = {}) {
+    if (options.reveal && this.parent) {
+      this.parent.open(options);
     }
   }
 
