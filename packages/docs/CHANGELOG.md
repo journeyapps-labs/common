@@ -1,5 +1,11 @@
 # @journeyapps-labs/common-docs
 
+## 0.0.5
+
+### Patch Changes
+
+- 6938e8a: Bump all dependencies
+
 ## 0.0.4
 
 ### Patch Changes

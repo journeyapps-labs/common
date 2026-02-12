@@ -1,5 +1,11 @@
 # @journeyapps-labs/common-sdk
 
+## 1.0.3
+
+### Patch Changes
+
+- 6938e8a: Bump all dependencies
+
 ## 1.0.2
 
 ### Patch Changes
