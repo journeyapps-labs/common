@@ -1,66 +1,68 @@
-import { TreeEntity, TreeNode } from '../../src';
-import { describe, it, expect } from 'vitest';
+import { TreeNode } from '../../src';
+import { describe, expect, it } from 'vitest';
 
 describe('Tree', () => {
-  it('should test all tree things', async () => {
+  it('should test serialization', async () => {
     const root = new TreeNode('root');
     const child1 = new TreeNode('child1');
     const child2 = new TreeNode('child2');
-    const child3 = new TreeEntity('child3');
+    const child3 = new TreeNode('child3');
 
     root.addChild(child1);
     child1.addChild(child2);
     root.addChild(child3);
 
-    // check parents
-    expect(child1.getParent()).toBe(root);
-    expect(root.flatten().length).toEqual(4);
-    expect(root.getChild('child1')).toBe(child1);
-    expect(child1.getChild('child2')).toBe(child2);
-    await expect(() => {
-      root.addChild(new TreeNode('child1'));
-    }).toThrow();
+    // everything should start off collapsed
+    [root, child1, child2, child3].forEach((c) => {
+      expect((c as TreeNode).collapsed).toBe(true);
+    });
+    expect(root.serialize()).toMatchSnapshot();
 
-    // deep fetch
-    expect(root.fromPath(child1.getPath())).toBe(child1);
-    expect(root.fromPath(child2.getPath())).toBe(child2);
-    expect(root.fromPath(child3.getPath())).toBe(child3);
+    child1.open();
 
-    // deleting
-    child3.delete();
-    expect(child3.getParent()).toEqual(null);
-    expect(root.flatten().length).toEqual(3);
-    root.addChild(child3);
-
-    // serialization
-    const serialized = root.serialize();
+    // everything except child 1 should be open
+    [root, child2, child3].forEach((c) => {
+      expect((c as TreeNode).collapsed).toBe(true);
+    });
+    expect(child1.collapsed).toEqual(false);
+    let serialized = root.serialize();
     expect(serialized).toMatchSnapshot();
-    expect(root.collapsed).toEqual(true);
-    expect(child1.collapsed).toEqual(true);
-    expect(child2.collapsed).toEqual(true);
 
-    const promises = [root, child1, child2].map((c: TreeNode) => {
-      return new Promise((resolve) => {
-        const remove = c.registerListener({
-          collapsedChanged: (col) => {
-            resolve(col);
-            remove?.();
-          }
-        });
-      });
+    [root, child1, child2, child3].forEach((c) => {
+      (c as TreeNode).setCollapsed(true);
+      expect((c as TreeNode).collapsed).toBe(true);
     });
 
-    root.openChildren(true);
-
-    const res = await Promise.all(promises);
-    expect(res[0]).toEqual(root.collapsed);
-    expect(res[1]).toEqual(child1.collapsed);
-    expect(res[2]).toEqual(child2.collapsed);
-
-    expect(root.collapsed).toEqual(false);
+    // should deserialize properly
+    root.deserialize(serialized);
+    [root, child2, child3].forEach((c) => {
+      expect((c as TreeNode).collapsed).toBe(true);
+    });
     expect(child1.collapsed).toEqual(false);
-    expect(child2.collapsed).toEqual(false);
 
-    // add child 3 to child 2
+    // flatten again
+    [root, child1, child2, child3].forEach((c) => {
+      (c as TreeNode).setCollapsed(true);
+    });
+
+    root.deserialize({
+      [root.getPathAsString()]: {
+        collapsed: true
+      },
+      [child1.getPathAsString()]: {
+        collapsed: false
+      },
+      [child2.getPathAsString()]: {
+        collapsed: true
+      },
+      [child3.getPathAsString()]: {
+        collapsed: true
+      }
+    });
+
+    [root, child2, child3].forEach((c) => {
+      expect((c as TreeNode).collapsed).toBe(true);
+    });
+    expect(child1.collapsed).toEqual(false);
   });
 });

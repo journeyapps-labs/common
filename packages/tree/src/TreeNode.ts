@@ -1,8 +1,15 @@
 import { FlattenOptions, Path, PathEntry, PathEntryType, TreeEntity, TreeEntityListener } from './TreeEntity';
 import { TreeException } from './TreeException';
 
+/**
+ * @deprecated
+ */
 export interface TreeSerialized {
   [key: string]: { collapsed: boolean };
+}
+
+export interface TreeSerializedV2 {
+  open: string[];
 }
 
 export interface TreeNodeListener extends TreeEntityListener {
@@ -46,30 +53,44 @@ export class TreeNode<T extends TreeNodeListener = TreeNodeListener> extends Tre
     return PathEntryType.CHILD;
   }
 
-  open() {
+  open(options: { reveal?: boolean } = {}) {
     this.setCollapsed(false);
-    super.open();
+    super.open(options);
   }
 
-  deserialize(payload: TreeSerialized) {
-    for (let key in payload) {
-      const node = this.fromPath(key);
-      if (node && node instanceof TreeNode) {
-        node.setCollapsed(payload[key].collapsed);
-      }
+  deserialize(payload: TreeSerialized | TreeSerializedV2) {
+    let final = payload as TreeSerializedV2;
+
+    // handle V1
+    if (!payload.open) {
+      final = {
+        open: Object.keys(payload).filter((p) => !(payload as TreeSerialized)[p].collapsed)
+      };
     }
+
+    let map = this.flattenAsRecord({
+      filter: (t) => t instanceof TreeNode
+    });
+
+    final.open.forEach((node) => {
+      (map[node] as TreeNode)?.open();
+    });
   }
 
-  serialize(): TreeSerialized {
-    const object: TreeSerialized = {};
-    for (let ob of this.flatten()) {
-      if (ob instanceof TreeNode) {
-        object[ob.getPathAsString()] = {
-          collapsed: ob.collapsed
-        };
-      }
-    }
-    return object;
+  /**
+   * Will open and also open parents
+   */
+  reveal() {
+    this.open();
+  }
+
+  serialize(): TreeSerializedV2 {
+    return {
+      open: this.flatten()
+        .filter((f) => f instanceof TreeNode)
+        .filter((t) => !t.collapsed)
+        .map((t) => t.getPathAsString())
+    };
   }
 
   setCollapsed(collapsed: boolean = true) {
@@ -101,6 +122,7 @@ export class TreeNode<T extends TreeNodeListener = TreeNodeListener> extends Tre
       throw new TreeException(this, `Tree with key ${child.getKey()} already exists in this node`);
     }
     child.setParent(this);
+
     this._childrenSet.add(child);
     this._childrenMap.set(child.getKey(), child);
     const l1 = child.registerListener({
@@ -113,6 +135,10 @@ export class TreeNode<T extends TreeNodeListener = TreeNodeListener> extends Tre
       }
     });
     this.iterateListeners((cb) => cb.childAdded?.(child));
+
+    if (child instanceof TreeNode && !child.collapsed) {
+      this.open();
+    }
   }
 
   clear() {
@@ -128,7 +154,17 @@ export class TreeNode<T extends TreeNodeListener = TreeNodeListener> extends Tre
     });
   }
 
-  flatten(options?: FlattenOptions): TreeEntity[] {
+  flattenAsRecord(options: FlattenOptions = {}) {
+    return this.flatten(options).reduce(
+      (prev, cur) => {
+        prev[cur.getPathAsString()] = cur;
+        return prev;
+      },
+      {} as { [key: string]: TreeEntity }
+    );
+  }
+
+  flatten(options: FlattenOptions = {}): TreeEntity[] {
     let arr: TreeEntity[] = [];
 
     if (options?.filter?.(this) !== false) {

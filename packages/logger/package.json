@@ -14,9 +14,9 @@
   "main": "./dist/index.js",
   "typings": "./dist/@types/index",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.20"
+    "@types/lodash": "^4.17.23"
   }
 }
