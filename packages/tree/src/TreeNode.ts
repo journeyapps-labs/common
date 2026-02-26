@@ -68,13 +68,19 @@ export class TreeNode<T extends TreeNodeListener = TreeNodeListener> extends Tre
       };
     }
 
-    let map = this.flattenAsRecord({
-      filter: (t) => t instanceof TreeNode
-    });
+    let open = final.open.reduce(
+      (prev, cur: string) => {
+        prev[cur] = true;
+        return prev;
+      },
+      {} as Record<string, true>
+    );
 
-    final.open.forEach((node) => {
-      (map[node] as TreeNode)?.open();
-    });
+    this.flatten()
+      .filter((f) => f instanceof TreeNode)
+      .forEach((f) => {
+        f.setCollapsed(!open[f.getPathAsString()]);
+      });
   }
 
   /**
@@ -152,16 +158,6 @@ export class TreeNode<T extends TreeNodeListener = TreeNodeListener> extends Tre
     children.forEach((c) => {
       this.addChild(c);
     });
-  }
-
-  flattenAsRecord(options: FlattenOptions = {}) {
-    return this.flatten(options).reduce(
-      (prev, cur) => {
-        prev[cur.getPathAsString()] = cur;
-        return prev;
-      },
-      {} as { [key: string]: TreeEntity }
-    );
   }
 
   flatten(options: FlattenOptions = {}): TreeEntity[] {
