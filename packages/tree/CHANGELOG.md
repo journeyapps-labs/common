@@ -1,5 +1,11 @@
 # @journeyapps-labs/common-tree
 
+## 3.0.0
+
+### Major Changes
+
+- 272aac4: Issue with deserialization
+
 ## 2.0.0
 
 ### Major Changes
