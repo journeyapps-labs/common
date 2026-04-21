@@ -1,5 +1,11 @@
 # @journeyapps-labs/common-sdk
 
+## 1.0.4
+
+### Patch Changes
+
+- 22f9b88: Update dependencies to remove vitest as a production dependency.
+
 ## 1.0.3
 
 ### Patch Changes
