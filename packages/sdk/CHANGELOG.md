@@ -1,5 +1,11 @@
 # @journeyapps-labs/common-sdk
 
+## 1.0.5
+
+### Patch Changes
+
+- d2ed142: Removed unused uuid dependency
+
 ## 1.0.4
 
 ### Patch Changes
