@@ -35,13 +35,11 @@
     "@journeyapps-labs/micro-streaming": "^1.0.2",
     "agentkeepalive": "^4.6.0",
     "bson": "^7.2.0",
-    "lodash": "^4.17.23",
-    "uuid": "^13.0.0"
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
     "vitest": "^4.0.18",
     "@types/lodash": "^4.17.23",
-    "@types/uuid": "^11.0.0",
     "nock": "^14.0.11"
   }
 }
