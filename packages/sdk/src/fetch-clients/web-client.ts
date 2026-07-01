@@ -1,8 +1,10 @@
 import * as micro_streaming from '@journeyapps-labs/micro-streaming';
-import * as streaming from '../streaming';
-import * as requester from './request';
 import * as defs from '../definitions';
+import { RequestParams } from '../definitions';
+import * as streaming from '../streaming';
 import * as utils from '../utils';
+import * as requester from './request';
+import { FetchParams } from './request';
 
 export type WebRequestInput = ReadableStream | any;
 export type WebNetworkResponse = defs.NetworkResponse<Response>;
@@ -38,7 +40,7 @@ export const createWebNetworkClient = (options?: WebNetworkClientOptions): WebNe
     augment: <C extends WebNetworkClient>(augmented: Partial<defs.NetworkClientParams<Response>>) => {
       return createWebNetworkClient({ ...augmented, ...options }) as C;
     },
-    request: async (url, params) => {
+    request: async (url: string, params: RequestParams<Response, any>) => {
       let headers = {};
       let body;
       if (params.body) {
@@ -61,7 +63,7 @@ export const createWebNetworkClient = (options?: WebNetworkClientOptions): WebNe
         user_agent: options?.user_agent,
         body: body,
 
-        request: async (url, params) => {
+        request: async (url: string, params: FetchParams): Promise<Response> => {
           return await fetch(url, params);
         }
       });

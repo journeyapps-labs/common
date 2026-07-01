@@ -1,8 +1,9 @@
 import * as micro_streaming from '@journeyapps-labs/micro-streaming';
-import * as streaming from '../streaming';
 import * as defs from '../definitions';
-import * as decoders from './decoders';
+import { Codec } from '../definitions';
+import * as streaming from '../streaming';
 import * as codecs from './codecs';
+import * as decoders from './decoders';
 import * as errors from './errors';
 
 export type FetchParams = {
@@ -75,8 +76,10 @@ export const request = async <R extends defs.TResponse>(
       const content_type = headers[defs.Header.ContentType] || defs.ContentType.JSON;
       headers[defs.Header.ContentType] = content_type;
 
-      const codec = params.codecs?.[content_type] || codecs.DEFAULT_CODECS[content_type];
-      if (codec) {
+      if (params.encoder) {
+        body = params.encoder(params.body);
+      } else if (params.codecs?.[content_type] || codecs.DEFAULT_CODECS[content_type]) {
+        const codec: Codec = params.codecs?.[content_type] || codecs.DEFAULT_CODECS[content_type];
         body = codec.encode(params.body);
       } else {
         if (!Buffer.isBuffer(params.body) && typeof params.body !== 'string') {
@@ -103,7 +106,8 @@ export const request = async <R extends defs.TResponse>(
     }, timeout);
   }
 
-  const decoder = params.decoder || decoders.decodeServiceResponse;
+  const decoder: defs.ResponseDecoder<R> =
+    params.decoder || ((res, meta) => decoders.decodeServiceResponse(res, meta, params.codecs));
   const max_attempts = (params.retry_attempts ?? 1) - 1;
 
   try {

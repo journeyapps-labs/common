@@ -63,6 +63,8 @@ export type ResponseDecoder<R extends TResponse = TResponse> = (
   request_context: RequestMetadata
 ) => Promise<any> | any;
 
+export type RequestEncoder<T = any> = (data: T) => string | Uint8Array;
+
 export type CommonRequestParams<R extends TResponse = TResponse> = {
   /**
    * Maximum amount of time allowed to receive a response to a request
@@ -93,6 +95,7 @@ export type CommonRequestParams<R extends TResponse = TResponse> = {
 export type RequestParams<R extends TResponse, T> = CommonRequestParams<R> & {
   method: METHOD | StringMethod;
   body?: T | streaming.StreamPayload<any, any, any>;
+  encoder?: RequestEncoder<T>;
 
   retryable?: boolean;
 };
@@ -117,11 +120,15 @@ export type NetworkClient<I = any, O extends NetworkResponse<any> = NetworkRespo
   request: (url: string, params: RequestParams<ExtractNativeResponseFromNetworkResponse<O>, I>) => Promise<O>;
 };
 
-export type ExtractNetworkResponseFromNetworkClient<T extends NetworkClient> =
-  T extends NetworkClient<any, infer R> ? R : never;
+export type ExtractNetworkResponseFromNetworkClient<T extends NetworkClient> = T extends NetworkClient<any, infer R>
+  ? R
+  : never;
 
-export type ExtractNativeResponseFromNetworkResponse<T extends NetworkResponse<any>> =
-  T extends NetworkResponse<infer R> ? R : never;
+export type ExtractNativeResponseFromNetworkResponse<T extends NetworkResponse<any>> = T extends NetworkResponse<
+  infer R
+>
+  ? R
+  : never;
 
 export type ExtractNativeResponse<C extends NetworkClient> = ExtractNativeResponseFromNetworkResponse<
   ExtractNetworkResponseFromNetworkClient<C>

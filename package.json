@@ -7,6 +7,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\"",
     "release": "pnpm build && pnpm changeset publish",
     "build": "./node_modules/.bin/tsc --build",
+    "watch": "pnpm build -w",
     "test": "pnpm run -r test",
     "ncu": "ncu -u && pnpm recursive exec -- ncu -u"
   },
