@@ -78,8 +78,11 @@ export const request = async <R extends defs.TResponse>(
 
       if (params.encoder) {
         body = params.encoder(params.body);
-      } else if (params.codecs?.[content_type] || codecs.DEFAULT_CODECS[content_type]) {
-        const codec: Codec = params.codecs?.[content_type] || codecs.DEFAULT_CODECS[content_type];
+      } else if (params.codecs?.[content_type]) {
+        const codec: Codec = params.codecs?.[content_type];
+        body = codec.encode(params.body);
+      } else if (codecs.DEFAULT_CODECS[content_type]) {
+        const codec: Codec = codecs.DEFAULT_CODECS[content_type];
         body = codec.encode(params.body);
       } else {
         if (!Buffer.isBuffer(params.body) && typeof params.body !== 'string') {
@@ -106,8 +109,7 @@ export const request = async <R extends defs.TResponse>(
     }, timeout);
   }
 
-  const decoder: defs.ResponseDecoder<R> =
-    params.decoder || ((res, meta) => decoders.decodeServiceResponse(res, meta, params.codecs));
+  const decoder: defs.ResponseDecoder<R> = params.decoder || decoders.buildServiceResponseDecoder(params.codecs);
   const max_attempts = (params.retry_attempts ?? 1) - 1;
 
   try {

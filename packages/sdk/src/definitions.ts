@@ -1,8 +1,15 @@
 import type * as stream from 'stream/web';
 import * as streaming from './streaming';
 
+export type ResponseDecoder<R extends TResponse = TResponse> = (
+  response: R,
+  request_context: RequestMetadata
+) => Promise<any> | any;
+
+export type RequestEncoder<T = any> = (data: T) => string | Uint8Array;
+
 export type Codec<T = any> = {
-  encode: (data: T) => string | Uint8Array;
+  encode: RequestEncoder<T>;
   decode: (data: Uint8Array | ArrayBuffer) => T;
 };
 
@@ -58,12 +65,6 @@ export type RequestMetadata = {
   url: string;
   method: string;
 };
-export type ResponseDecoder<R extends TResponse = TResponse> = (
-  response: R,
-  request_context: RequestMetadata
-) => Promise<any> | any;
-
-export type RequestEncoder<T = any> = (data: T) => string | Uint8Array;
 
 export type CommonRequestParams<R extends TResponse = TResponse> = {
   /**
