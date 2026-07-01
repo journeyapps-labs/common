@@ -120,15 +120,11 @@ export type NetworkClient<I = any, O extends NetworkResponse<any> = NetworkRespo
   request: (url: string, params: RequestParams<ExtractNativeResponseFromNetworkResponse<O>, I>) => Promise<O>;
 };
 
-export type ExtractNetworkResponseFromNetworkClient<T extends NetworkClient> = T extends NetworkClient<any, infer R>
-  ? R
-  : never;
+export type ExtractNetworkResponseFromNetworkClient<T extends NetworkClient> =
+  T extends NetworkClient<any, infer R> ? R : never;
 
-export type ExtractNativeResponseFromNetworkResponse<T extends NetworkResponse<any>> = T extends NetworkResponse<
-  infer R
->
-  ? R
-  : never;
+export type ExtractNativeResponseFromNetworkResponse<T extends NetworkResponse<any>> =
+  T extends NetworkResponse<infer R> ? R : never;
 
 export type ExtractNativeResponse<C extends NetworkClient> = ExtractNativeResponseFromNetworkResponse<
   ExtractNetworkResponseFromNetworkClient<C>
