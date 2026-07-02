@@ -24,6 +24,11 @@ jobs:
       - name: Setup Node and pnpm
         uses: ./.github/actions/setup-node-pnpm
 
+      - name: Update npm
+        run: |
+          npm install -g npm@latest
+          npm --version
+
       - name: Build
         run: pnpm build
         env:
