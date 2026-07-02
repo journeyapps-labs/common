@@ -7,7 +7,7 @@ Common packages used in JourneyApps Labs repos.
 ### Dev release
 
 1. Ensure a changeset has been created `pnpm changeset`
-2. Run https://github.com/journeyapps-labs/common/actions/workflows/dev-packages.yaml the workflow manually on the branch you need
+2. Run https://github.com/journeyapps-labs/common/actions/workflows/release.yml manually on the branch you need
 
 ### Production release
 
