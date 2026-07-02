@@ -24,7 +24,6 @@ jobs:
       - name: Setup Node and pnpm
         uses: ./.github/actions/setup-node-pnpm
 
-      # Default NPM doesn't have access to trusted publishing, so we need to update it to the latest version
       - name: Update npm
         run: |
           npm install -g npm@latest
