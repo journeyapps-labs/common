@@ -109,6 +109,32 @@ describe('network requests', () => {
     );
   });
 
+  test('it should use a custom encoder configured on the request', async () => {
+    nock('http://test/').post('/', 'request-encoded:data').reply(200, {
+      data: true
+    });
+
+    const client = sdk.createNodeNetworkClient({
+      codecs: {
+        'application/custom': {
+          encode: (data) => `client-encoded:${data}`,
+          decode: (data) => Buffer.from(data).toString()
+        }
+      }
+    });
+
+    const res = await client.request('http://test/', {
+      method: 'post',
+      headers: {
+        [sdk.Header.ContentType]: 'application/custom'
+      },
+      body: 'data',
+      encoder: (data) => `request-encoded:${data}`
+    });
+
+    await expect(await res.decode()).toEqual(true);
+  });
+
   test('it should use custom decoder configured on the client', async () => {
     const response = 'this is some custom data';
     nock('http://test/').get('/').reply(200, response);
@@ -117,6 +143,32 @@ describe('network requests', () => {
       decoder: async (response) => {
         const test = await response.text();
         return test.toUpperCase();
+      }
+    });
+
+    const res = await client.request('http://test/', {
+      method: 'get'
+    });
+
+    await expect(await res.decode()).toEqual(response.toUpperCase());
+  });
+
+  test('it should use custom codec decoders configured on the client', async () => {
+    const response = 'this is some custom codec data';
+    nock('http://test/').get('/').reply(200, response, {
+      'Content-Type': 'application/custom; charset=utf-8'
+    });
+
+    const client = sdk.createNodeNetworkClient({
+      codecs: {
+        'application/custom': {
+          encode: (data) => String(data),
+          decode: (data) => {
+            return {
+              data: Buffer.from(data).toString().toUpperCase()
+            };
+          }
+        }
       }
     });
 
