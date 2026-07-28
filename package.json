@@ -1,7 +1,7 @@
 {
   "name": "common",
   "private": "true",
-  "packageManager": "pnpm@10.29.2",
+  "packageManager": "pnpm@11.17.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\"",
@@ -13,9 +13,9 @@
     "ncu": "ncu -u && pnpm recursive exec -- ncu -u"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.8",
-    "npm-check-updates": "^19.3.2",
-    "prettier": "3.8.1",
-    "typescript": "^5.9.3"
+    "@changesets/cli": "^2.31.1",
+    "npm-check-updates": "^23.0.0",
+    "prettier": "3.9.6",
+    "typescript": "^7.0.2"
   }
 }
