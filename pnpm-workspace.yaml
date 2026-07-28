@@ -1,2 +1,7 @@
 packages:
   - 'packages/*'
+allowBuilds:
+  core-js: false
+  esbuild: false
+minimumReleaseAgeExclude:
+  - '@types/node@26.1.2'
