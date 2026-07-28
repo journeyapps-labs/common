@@ -13,10 +13,10 @@
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "typings": "./dist/@types/index",
-  "dependencies": {
-    "lodash": "^4.17.23"
+  "scripts": {
+    "test": "vitest run"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.23"
+    "vitest": "^4.0.18"
   }
 }
